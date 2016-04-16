@@ -34,7 +34,8 @@ public class RooContour {
     }
 
     public double getPerimeter() {
-        return Math.abs(Imgproc.arcLength(new MatOfPoint2f(this.contour.toArray()), true));
+        MatOfPoint2f matOfPoint2f = new MatOfPoint2f(this.contour.toArray());
+        return Math.abs(Imgproc.arcLength(matOfPoint2f, true));
     }
 
     public double getArea() {
@@ -47,13 +48,15 @@ public class RooContour {
 
     public synchronized RooPolygon approximatePoly(int accuracy) {
         MatOfPoint2f polygon = new MatOfPoint2f();
-        Imgproc.approxPolyDP(new MatOfPoint2f(this.contour.toArray()), polygon, accuracy, true);
+        MatOfPoint2f matOfPoint2f = new MatOfPoint2f(this.contour.toArray());
+        Imgproc.approxPolyDP(matOfPoint2f, polygon, accuracy, true);
+        matOfPoint2f.release();
         return new RooPolygon(polygon);
     }
 
     @Override
     protected void finalize() throws Throwable {
-        contour.release();
+        this.contour.release();
         super.finalize();
     }
 }

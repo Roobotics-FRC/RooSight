@@ -32,7 +32,6 @@ public class RooColorImage extends RooImage {
         Imgproc.cvtColor(this.getImage(), hls, Imgproc.COLOR_BGR2HLS);
         Mat threshold = new Mat(this.getImage().rows(), this.getImage().cols(), CvType.CV_8UC1);
         Core.inRange(hls, new Scalar(hMin, lMin, sMin), new Scalar(hMax, lMax, sMax), threshold);
-        
         hls.release();
         return new RooBinaryImage(threshold);
     }
@@ -69,8 +68,10 @@ public class RooColorImage extends RooImage {
     }
 
     public void drawPolygon(RooPolygon polygon, RooColor color, int thickness) {
-        RooContour contour = new RooContour(new MatOfPoint(polygon.getPolygon().toArray()));
+        MatOfPoint matOfPoint = new MatOfPoint(polygon.getPolygon().toArray());
+        RooContour contour = new RooContour(matOfPoint);
         drawContour(contour, color, thickness);
+        matOfPoint.release();
     }
 
     public void drawPoint(RooPoint point, RooColor color, int thickness) {

@@ -27,7 +27,6 @@ public class RooPolygon {
     }
 
     public RooPoint[] getPoints() {
-        MatOfPoint2f points = new MatOfPoint2f(this.polygon);
         RooPoint[] rooPoints = new RooPoint[getNumPoints()];
         Point pointsArr[] = this.polygon.toArray();
         for (int i = 0; i < rooPoints.length; ++i) {
@@ -37,7 +36,10 @@ public class RooPolygon {
     }
 
     public boolean isConvex() {
-        return Imgproc.isContourConvex(new MatOfPoint(this.polygon.toArray()));
+        MatOfPoint matOfPoint = new MatOfPoint(this.polygon.toArray());
+        boolean ret = Imgproc.isContourConvex(matOfPoint);
+        matOfPoint.release();
+        return ret;
     }
 
     public double getArea() {
@@ -45,7 +47,10 @@ public class RooPolygon {
     }
 
     public double getPerimeter() {
-        return Math.abs(Imgproc.arcLength(new MatOfPoint2f(this.polygon.toArray()), true));
+        MatOfPoint2f matOfPoint2f = new MatOfPoint2f(this.polygon.toArray());
+        double ret = Math.abs(Imgproc.arcLength(matOfPoint2f, true));
+        matOfPoint2f.release();
+        return ret;
     }
 
 

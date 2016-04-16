@@ -18,9 +18,7 @@ public abstract class RooImage {
     protected Mat image;
 
     public RooImage(Mat image) {
-        Mat copy = new Mat(image.rows(), image.cols(), image.type());
-        image.copyTo(copy);
-        this.image = copy;
+        this.image = image;
     }
 
 
@@ -53,5 +51,11 @@ public abstract class RooImage {
 
     public void writeToFile(String filename) {
         Imgcodecs.imwrite(filename, this.getImage());
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        this.image.release();
+        super.finalize();
     }
 }
