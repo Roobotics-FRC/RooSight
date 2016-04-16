@@ -32,7 +32,6 @@ public class RooProcessor {
                 config.getHslLmin(),
                 config.getHslLmax()
         );
-        hsl.writeToFile("/tmp/hsl.jpg");
         RooBinaryImage hsv = rooImage.hsvThreshold(
                 config.getHsvHMin(),
                 config.getHsvHmax(),
@@ -41,7 +40,6 @@ public class RooProcessor {
                 config.getHsvVMin(),
                 config.getHsvVmax()
         );
-        hsv.writeToFile("/tmp/hsv.jpg");
         RooBinaryImage rgb = rooImage.rgbThreshold(
                 config.getrMin(),
                 config.getrMax(),
@@ -50,11 +48,8 @@ public class RooProcessor {
                 config.getbMin(),
                 config.getbMax()
         );
-        rgb.writeToFile("/tmp/rgb.jpg");
         RooBinaryImage hslHsv = hsl.bitwiseXor(hsv);
-        hslHsv.writeToFile("/tmp/hslHsv.jpg");
         RooBinaryImage hslHsvRgb = hslHsv.bitwiseXor(rgb);
-        hslHsvRgb.writeToFile("/tmp/hslHsvRgb.jpg");
         return hslHsvRgb;
     }
 
