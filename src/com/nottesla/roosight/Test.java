@@ -7,7 +7,7 @@ import java.io.File;
 /**
  * Created by tesla on 4/15/16.
  */
-public class Main {
+public class Test {
     public static void main(String[] args) throws InterruptedException {
         Thread.sleep(5000);
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -22,7 +22,7 @@ public class Main {
             return;
         }
         System.out.println(file.getName());
-        System.out.printf("Usage: %d/%d (%d%%)\n", Runtime.getRuntime().totalMemory(), Runtime.getRuntime().maxMemory(), Runtime.getRuntime().totalMemory() * 100 / Runtime.getRuntime().maxMemory());
+        System.out.printf("Usage: %d/%d (%d%%)\n", Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory(), Runtime.getRuntime().totalMemory(), (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) * 100 / Runtime.getRuntime().totalMemory());
         RooColorImage colorImage = new RooColorImage(file.getAbsolutePath());
         RooConfig config = new RooConfig();
         config.setMinArea(400);
@@ -33,6 +33,7 @@ public class Main {
         RooBinaryImage thresh = rooProcessor.processImage(colorImage);
         RooContour[] contours = rooProcessor.findContours(thresh);
         colorImage.drawContours(contours, new RooColor(0, 0, 255), 2);
+        colorImage.blur(1);
         colorImage.writeToFile(file.getAbsolutePath() + ".jpg");
     }
 }

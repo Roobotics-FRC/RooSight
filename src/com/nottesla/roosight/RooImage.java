@@ -4,7 +4,9 @@ package com.nottesla.roosight;
 import javafx.scene.image.Image;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -53,10 +55,14 @@ public abstract class RooImage {
         Imgcodecs.imwrite(filename, this.getImage());
     }
 
+    public void blur(int amount) {
+        int width = getImage().width() / 100 * amount;
+        int height = getImage().width() / 100 * amount;
+        Imgproc.blur(getImage(), getImage(), new Size(width, height));
+    }
+
     @Override
     protected void finalize() throws Throwable {
-//        getImage().release();
         super.finalize();
-        System.gc();
     }
 }
