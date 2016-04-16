@@ -21,7 +21,7 @@ public class RooColor {
     }
 
     public RooColor(int r, int g, int b) {
-        this(new Scalar(r, g, b, 0));
+        this(new Scalar(b, g, r, 0));
     }
 
     public RooColor(Color color) {

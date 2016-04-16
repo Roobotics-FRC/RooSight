@@ -63,6 +63,27 @@ public class RooColorImage extends RooImage {
         }
     }
 
+    public void drawMarker(RooPoint point, RooColor color, int size, int thickness, int type) {
+        Imgproc.drawMarker(this.getImage(), point.getCvPoint(), color.getScalar(), type, size, thickness, Imgproc.LINE_4);
+    }
+
+    public void markContour(RooContour contour, RooColor color, int thickness) {
+        int size = (contour.getWidth() + contour.getHeight()) / 2;
+        drawMarker(contour.getCenter(), color, size, thickness, Imgproc.MARKER_CROSS);
+    }
+
+    public void markContours(RooContour[] contours, RooColor color, int thickness) {
+        for (int i = 0; i < contours.length; ++i) {
+            markContour(contours[i], color, thickness);
+        }
+    }
+
+    public void drawRect(RooPoint point1, RooPoint point2, RooColor color, int thickness) {
+        Imgproc.rectangle(this.getImage(), point1.getCvPoint(), point2.getCvPoint(), color.getScalar(), thickness);
+    }
+
+    public void drawCircle(RooPoint center, int radius, RooColor color, int thickness)
+
     public void drawLine(RooPoint point1, RooPoint point2, RooColor color, int thickness) {
         Imgproc.line(this.getImage(), point1.getCvPoint(), point2.getCvPoint(), color.getScalar(), thickness);
     }

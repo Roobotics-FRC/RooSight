@@ -18,11 +18,22 @@ public class RooContour {
     }
 
     public int getHeight() {
-        return rect.height;
+        return this.rect.height;
     }
 
     public int getWidth() {
-        return rect.width;
+        return this.rect.width;
+    }
+
+    public RooPoint getCorner() {
+        return new RooPoint(this.rect.br());
+    }
+
+    public RooPoint getCenter() {
+        return new RooPoint(
+                (getX() + this.rect.br().x) / 2,
+                (getY() + this.rect.br().y) / 2
+        );
     }
 
     public int getX() {

@@ -2,6 +2,7 @@ package com.nottesla.roosight;
 
 import org.opencv.core.Core;
 
+import java.awt.*;
 import java.io.File;
 
 /**
@@ -9,8 +10,8 @@ import java.io.File;
  */
 public class Test {
     public static void main(String[] args) throws InterruptedException {
-        Thread.sleep(5000);
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        process(new File("/tmp/images/0.jpg"));
         File files[] = new File("/tmp/images").listFiles();
         for (int i = 0; i < files.length; ++i) {
             process(files[i]);
@@ -27,13 +28,15 @@ public class Test {
         RooConfig config = new RooConfig();
         config.setMinArea(400);
         config.setMinPerimeter(300);
-        config.setRGB(0, 250, 100, 255, 20, 255);
-        config.setHSL(10, 180, 0, 255, 50, 255);
+        config.setRGB(0, 220, 55, 255, 25, 240);
+        config.setHSL(37, 100, 30, 255, 150, 255);
+        config.setHSV(37, 100, 30, 255, 50, 255);
         RooProcessor rooProcessor = new RooProcessor(config);
         RooBinaryImage thresh = rooProcessor.processImage(colorImage);
+        thresh.blur(1);
         RooContour[] contours = rooProcessor.findContours(thresh);
-        colorImage.drawContours(contours, new RooColor(0, 0, 255), 2);
-        colorImage.blur(1);
+        colorImage.drawContours(contours, new RooColor(Color.RED), 2);
+        colorImage.markContours(contours, new RooColor(Color.RED), 1);
         colorImage.writeToFile(file.getAbsolutePath() + ".jpg");
     }
 }

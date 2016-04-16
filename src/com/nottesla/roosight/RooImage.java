@@ -56,6 +56,9 @@ public abstract class RooImage {
     }
 
     public void blur(int amount) {
+        if (amount < 0 || amount > 100) {
+            throw new IllegalArgumentException("amount must be a percentage from 0-100");
+        }
         int width = getImage().width() / 100 * amount;
         int height = getImage().width() / 100 * amount;
         Imgproc.blur(getImage(), getImage(), new Size(width, height));

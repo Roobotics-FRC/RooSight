@@ -28,7 +28,7 @@ public class RooBinaryImage extends RooImage {
 
     public RooBinaryImage bitwiseAnd(RooBinaryImage otherImage) {
         Mat out = new Mat(otherImage.getImage().rows(), otherImage.getImage().cols(), otherImage.getImage().type());
-        Core.bitwise_or(this.getImage(), otherImage.getImage(), out);
+        Core.bitwise_and(this.getImage(), otherImage.getImage(), out);
         return new RooBinaryImage(out);
     }
 

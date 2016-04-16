@@ -48,8 +48,8 @@ public class RooProcessor {
                 config.getbMin(),
                 config.getbMax()
         );
-        RooBinaryImage hslHsv = hsl.bitwiseXor(hsv);
-        RooBinaryImage hslHsvRgb = hslHsv.bitwiseXor(rgb);
+        RooBinaryImage hslHsv = hsl.bitwiseAnd(hsv);
+        RooBinaryImage hslHsvRgb = hslHsv.bitwiseAnd(rgb);
         return hslHsvRgb;
     }
 
