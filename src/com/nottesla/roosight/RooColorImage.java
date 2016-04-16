@@ -82,7 +82,9 @@ public class RooColorImage extends RooImage {
         Imgproc.rectangle(this.getImage(), point1.getCvPoint(), point2.getCvPoint(), color.getScalar(), thickness);
     }
 
-    public void drawCircle(RooPoint center, int radius, RooColor color, int thickness)
+    public void drawCircle(RooPoint center, int radius, RooColor color, int thickness) {
+        Imgproc.circle(this.getImage(), center.getCvPoint(), radius, color.getScalar(), thickness);
+    }
 
     public void drawLine(RooPoint point1, RooPoint point2, RooColor color, int thickness) {
         Imgproc.line(this.getImage(), point1.getCvPoint(), point2.getCvPoint(), color.getScalar(), thickness);
