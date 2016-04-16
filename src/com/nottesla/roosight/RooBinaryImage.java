@@ -46,6 +46,7 @@ public class RooBinaryImage extends RooImage {
 
     public RooContour[] findContours() {
         Mat temp = new Mat(getImage().rows(), getImage().cols(), getImage().type());
+        this.getImage().copyTo(temp);
         List<MatOfPoint> contours = new ArrayList<>(5);
         Imgproc.findContours(temp, contours, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_TC89_KCOS);
         ArrayList<RooContour> results = new ArrayList<>(contours.size());

@@ -4,6 +4,7 @@ package com.nottesla.roosight;
 import javafx.scene.image.Image;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,7 @@ public abstract class RooImage {
         image.copyTo(copy);
         this.image = copy;
     }
+
 
     public byte[] getBytes() {
         byte buffer[] = new byte[(int) this.getImage().elemSize() * (int) this.getImage().total()];
@@ -47,5 +49,9 @@ public abstract class RooImage {
 
     public void setImage(Mat image) {
         this.image = image;
+    }
+
+    public void writeToFile(String filename) {
+        Imgcodecs.imwrite(filename, this.getImage());
     }
 }

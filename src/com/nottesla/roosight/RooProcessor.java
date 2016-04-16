@@ -1,5 +1,6 @@
 package com.nottesla.roosight;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -31,6 +32,7 @@ public class RooProcessor {
                 config.getHslLmin(),
                 config.getHslLmax()
         );
+        hsl.writeToFile("/tmp/hsl.jpg");
         RooBinaryImage hsv = rooImage.hsvThreshold(
                 config.getHsvHMin(),
                 config.getHsvHmax(),
@@ -39,6 +41,7 @@ public class RooProcessor {
                 config.getHsvVMin(),
                 config.getHsvVmax()
         );
+        hsv.writeToFile("/tmp/hsv.jpg");
         RooBinaryImage rgb = rooImage.rgbThreshold(
                 config.getrMin(),
                 config.getrMax(),
@@ -47,8 +50,11 @@ public class RooProcessor {
                 config.getbMin(),
                 config.getbMax()
         );
-        RooBinaryImage hslHsv = hsl.bitwiseAnd(hsv);
-        RooBinaryImage hslHsvRgb = hslHsv.bitwiseAnd(rgb);
+        rgb.writeToFile("/tmp/rgb.jpg");
+        RooBinaryImage hslHsv = hsl.bitwiseXor(hsv);
+        hslHsv.writeToFile("/tmp/hslHsv.jpg");
+        RooBinaryImage hslHsvRgb = hslHsv.bitwiseXor(rgb);
+        hslHsvRgb.writeToFile("/tmp/hslHsvRgb.jpg");
         return hslHsvRgb;
     }
 
@@ -57,7 +63,7 @@ public class RooProcessor {
         if (contours == null) {
             return null;
         }
-        List<RooContour> matchedContours = Arrays.asList(contours);
+        List<RooContour> matchedContours = new ArrayList<>(Arrays.asList(contours));
         Iterator<RooContour> contourIterator = matchedContours.iterator();
         while (contourIterator.hasNext()) {
             RooContour contour = contourIterator.next();

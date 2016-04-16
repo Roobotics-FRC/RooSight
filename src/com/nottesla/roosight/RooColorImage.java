@@ -4,13 +4,19 @@ import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by tesla on 3/16/16.
  */
 public class RooColorImage extends RooImage {
+    public RooColorImage(byte[] bytes) throws IOException {
+        super(bytes);
+    }
+
     public RooColorImage(String filePath) {
+
         this(Imgcodecs.imread(filePath));
     }
 
@@ -26,6 +32,7 @@ public class RooColorImage extends RooImage {
         Imgproc.cvtColor(this.getImage(), hls, Imgproc.COLOR_BGR2HLS);
         Mat threshold = new Mat(this.getImage().rows(), this.getImage().cols(), CvType.CV_8UC1);
         Core.inRange(hls, new Scalar(hMin, lMin, sMin), new Scalar(hMax, lMax, sMax), threshold);
+        
         hls.release();
         return new RooBinaryImage(threshold);
     }
