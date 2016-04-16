@@ -22,6 +22,7 @@ public class Main {
             return;
         }
         System.out.println(file.getName());
+        System.out.printf("Usage: %d/%d (%d%%)\n", Runtime.getRuntime().totalMemory(), Runtime.getRuntime().maxMemory(), Runtime.getRuntime().totalMemory() * 100 / Runtime.getRuntime().maxMemory());
         RooColorImage colorImage = new RooColorImage(file.getAbsolutePath());
         RooConfig config = new RooConfig();
         config.setMinArea(400);

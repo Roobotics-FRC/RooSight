@@ -56,7 +56,7 @@ public class RooPolygon {
 
     @Override
     public void finalize() throws Throwable {
-        polygon.release();
         super.finalize();
+        System.gc();
     }
 }

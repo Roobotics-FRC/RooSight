@@ -55,7 +55,8 @@ public abstract class RooImage {
 
     @Override
     protected void finalize() throws Throwable {
-        this.image.release();
+//        getImage().release();
         super.finalize();
+        System.gc();
     }
 }

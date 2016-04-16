@@ -56,7 +56,6 @@ public class RooContour {
 
     @Override
     protected void finalize() throws Throwable {
-        this.contour.release();
         super.finalize();
     }
 }

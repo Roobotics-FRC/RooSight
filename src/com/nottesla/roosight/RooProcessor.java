@@ -95,6 +95,7 @@ public class RooProcessor {
         }
         RooContour[] ret = new RooContour[matchedContours.size()];
         matchedContours.toArray(ret);
+        System.gc();
         return ret;
     }
 }
