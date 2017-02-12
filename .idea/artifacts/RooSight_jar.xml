@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="RooSight:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/RooSight_jar</output-path>
-    <root id="archive" name="RooSight.jar">
-      <element id="module-output" name="RooSight" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/dependencies/opencv-310.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
