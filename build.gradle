@@ -1,0 +1,16 @@
+group 'org.usfirst.frc.team4373'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://raw.githubusercontent.com/Roobotics-FRC/RooMaven/master' }
+}
+
+dependencies {
+    compile group: 'org.opencv', name: 'opencv-java', version: '3.2.0'
+}

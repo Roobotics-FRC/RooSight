@@ -1,0 +1,3 @@
+rootProject.name = 'RooSight'
+include 'src'
+findProject(':src')?.name = 'RooSight'
