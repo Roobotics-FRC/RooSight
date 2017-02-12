@@ -11,6 +11,10 @@ import java.io.File;
 public class Test {
     public static void main(String[] args) throws InterruptedException {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        System.loadLibrary("opencv_imgproc.3.2.0");
+        System.loadLibrary("opencv_imgcodecs.3.2");
+        System.loadLibrary("opencv_videoio.3.2");
+        System.loadLibrary("opencv_highgui.3.2.0");
 //        process(new File("/tmp/images/0.jpg"));
         File files[] = new File("/tmp/images").listFiles();
         for (int i = 0; i < files.length; ++i) {

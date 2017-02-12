@@ -5,6 +5,10 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = 'com.nottesla.roosight.Test'
+applicationDefaultJvmArgs = ["-Djava.library.path=lib"]
 
 repositories {
     mavenCentral()
@@ -13,4 +17,16 @@ repositories {
 
 dependencies {
     compile group: 'org.opencv', name: 'opencv-java', version: '3.2.0'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.nottesla.roosight.Test'
+        )
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
