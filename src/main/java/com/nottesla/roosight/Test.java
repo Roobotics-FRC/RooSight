@@ -1,6 +1,7 @@
 package com.nottesla.roosight;
 
 import org.opencv.core.Core;
+import org.opencv.core.Mat;
 
 import java.awt.*;
 import java.io.File;
@@ -15,6 +16,18 @@ public class Test {
         System.loadLibrary("opencv_imgcodecs.3.2");
         System.loadLibrary("opencv_videoio.3.2");
         System.loadLibrary("opencv_highgui.3.2.0");
+        System.loadLibrary("opencv_flann.3.2");
+        System.loadLibrary("opencv_ml.3.2");
+        System.loadLibrary("opencv_features2d.3.2");
+        System.loadLibrary("opencv_calib3d.3.2");
+        System.loadLibrary("opencv_objdetect.3.2");
+        System.loadLibrary("opencv_photo.3.2");
+        System.loadLibrary("opencv_stitching.3.2");
+        System.loadLibrary("opencv_video.3.2.0");
+        System.loadLibrary("opencv_superres.3.2");
+        System.loadLibrary("opencv_shape.3.2");
+        System.loadLibrary("opencv_videostab.3.2");
+        Mat mat = new Mat((long) 13837483);
 //        process(new File("/tmp/images/0.jpg"));
         File files[] = new File("/tmp/images").listFiles();
         for (int i = 0; i < files.length; ++i) {
@@ -27,7 +40,7 @@ public class Test {
             return;
         }
         System.out.println(file.getName());
-        System.out.printf("Usage: %d/%d (%d%%)\n", Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory(), Runtime.getRuntime().totalMemory(), (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) * 100 / Runtime.getRuntime().totalMemory());
+        System.out.printf("Usage: %d/%d (%d%%)", Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory(), Runtime.getRuntime().totalMemory(), (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) * 100 / Runtime.getRuntime().totalMemory());
         RooColorImage colorImage = new RooColorImage(file.getAbsolutePath());
         RooConfig config = new RooConfig();
         config.setMinArea(400);

@@ -16,7 +16,6 @@ public class RooColorImage extends RooImage {
     }
 
     public RooColorImage(String filePath) {
-
         this(Imgcodecs.imread(filePath));
     }
 
