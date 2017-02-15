@@ -1,9 +1,8 @@
-package com.nottesla.roosight;
+package org.usfirst.frc.team4373.roosight;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.utils.Converters;
+
 import java.awt.*;
 import java.io.File;
 
@@ -19,7 +18,7 @@ public class Test {
 //        process(new File("/tmp/images/0.jpg"));
         File files[] = new File("/tmp/images").listFiles();
         for (int i = 0; i < files.length; ++i) {
-//            process(files[i]);
+            process(files[i]);
         }
     }
 
