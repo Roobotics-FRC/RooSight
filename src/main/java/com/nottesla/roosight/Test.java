@@ -12,15 +12,15 @@ import java.io.File;
  */
 public class Test {
     public static void main(String[] args) throws InterruptedException {
-        System.load("/Users/derros/Projects/RooSight/share/OpenCV/java/libopencv_java320.dylib");
-        System.out.println("Loaded library.");
-        Converters c = new Converters();
-        try {
-            Mat testImg = Imgcodecs.imread("/Users/derros/Projects/TestImg/1.jpg");
-        } catch (UnsatisfiedLinkError err) {
-            err.printStackTrace();
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+        Mat mat = new Mat((long) 18364734);
+//        Mat mat1 = new Mat();
+//        process(new File("/tmp/images/0.jpg"));
+        File files[] = new File("/tmp/images").listFiles();
+        for (int i = 0; i < files.length; ++i) {
+//            process(files[i]);
         }
-        System.out.println("voila!");
     }
 
     public static void process(File file) {
