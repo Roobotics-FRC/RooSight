@@ -8,7 +8,7 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 
 mainClassName = 'com.nottesla.roosight.Test'
-applicationDefaultJvmArgs = ["-Djava.library.path=lib"]
+applicationDefaultJvmArgs = ["-Djava.library.path=share/OpenCV/java:lib"]
 
 repositories {
     mavenCentral()

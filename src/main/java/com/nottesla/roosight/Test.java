@@ -2,7 +2,8 @@ package com.nottesla.roosight;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.utils.Converters;
 import java.awt.*;
 import java.io.File;
 
@@ -11,28 +12,15 @@ import java.io.File;
  */
 public class Test {
     public static void main(String[] args) throws InterruptedException {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        System.loadLibrary("opencv_imgproc.3.2.0");
-        System.loadLibrary("opencv_imgcodecs.3.2");
-        System.loadLibrary("opencv_videoio.3.2");
-        System.loadLibrary("opencv_highgui.3.2.0");
-        System.loadLibrary("opencv_flann.3.2");
-        System.loadLibrary("opencv_ml.3.2");
-        System.loadLibrary("opencv_features2d.3.2");
-        System.loadLibrary("opencv_calib3d.3.2");
-        System.loadLibrary("opencv_objdetect.3.2");
-        System.loadLibrary("opencv_photo.3.2");
-        System.loadLibrary("opencv_stitching.3.2");
-        System.loadLibrary("opencv_video.3.2.0");
-        System.loadLibrary("opencv_superres.3.2");
-        System.loadLibrary("opencv_shape.3.2");
-        System.loadLibrary("opencv_videostab.3.2");
-        Mat mat = new Mat((long) 13837483);
-//        process(new File("/tmp/images/0.jpg"));
-        File files[] = new File("/tmp/images").listFiles();
-        for (int i = 0; i < files.length; ++i) {
-            process(files[i]);
+        System.load("/Users/derros/Projects/RooSight/share/OpenCV/java/libopencv_java320.dylib");
+        System.out.println("Loaded library.");
+        Converters c = new Converters();
+        try {
+            Mat testImg = Imgcodecs.imread("/Users/derros/Projects/TestImg/1.jpg");
+        } catch (UnsatisfiedLinkError err) {
+            err.printStackTrace();
         }
+        System.out.println("voila!");
     }
 
     public static void process(File file) {
