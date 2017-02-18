@@ -8,15 +8,17 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 
 mainClassName = 'org.usfirst.frc.team4373.roosight.Test'
-applicationDefaultJvmArgs = ["-Djava.library.path=/usr/local/Cellar/opencv3/3.2.0/share/OpenCV/java"]
+applicationDefaultJvmArgs = ["-Djava.library.path=/usr/local/share/OpenCV/java"]
 
 repositories {
     mavenCentral()
     maven { url 'https://raw.githubusercontent.com/Roobotics-FRC/RooMaven/master' }
+    flatDir { dirs 'lib' }
 }
 
 dependencies {
     compile group: 'org.opencv', name: 'opencv-java', version: '3.2.0'
+    compile name: 'jfxrt'
 }
 
 jar {
