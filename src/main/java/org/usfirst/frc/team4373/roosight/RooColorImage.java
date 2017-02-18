@@ -15,6 +15,7 @@ public class RooColorImage extends RooImage {
         super(bytes);
     }
 
+
     public RooColorImage(String filePath) {
         this(Imgcodecs.imread(filePath));
     }
@@ -24,6 +25,10 @@ public class RooColorImage extends RooImage {
         if (image.channels() < 3) {
             throw new IllegalArgumentException("nChannels < 3");
         }
+    }
+
+    public RooColorImage(RooSerializableImage image) throws IOException {
+        this(image.getImageData());
     }
 
     public RooBinaryImage hslThreshold(int hMin, int hMax, int lMin, int lMax, int sMin, int sMax) {
