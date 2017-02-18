@@ -33,12 +33,12 @@ public class RooCamera {
      * @return Mat newFrame
      * @throws NullPointerException
      */
-    public Mat getFrame() throws NullPointerException {
+    public RooColorImage getFrame() throws NullPointerException {
         if(vc.isOpened()) {
             Mat currFrame = new Mat();
             vc.read(currFrame);
 
-            return currFrame;
+            return new RooColorImage(currFrame);
         } else {
             throw new NullPointerException();
         }

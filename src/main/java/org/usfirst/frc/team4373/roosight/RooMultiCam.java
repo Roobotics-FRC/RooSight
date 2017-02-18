@@ -16,7 +16,7 @@ public class RooMultiCam {
         }
     }
 
-    public Mat getFrame(int i) {
+    public RooColorImage getFrame(int i) {
         return r[i].getFrame();
     }
 
