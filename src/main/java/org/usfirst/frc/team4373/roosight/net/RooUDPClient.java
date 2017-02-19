@@ -62,7 +62,7 @@ public class RooUDPClient {
         DatagramPacket fragPacket = new DatagramPacket(toByte(16), 4, host, port);
         udpSocket.send(fragPacket);
         // now send the REAL CASE
-        byte[][]  b = fragment(data);
+        byte[][] b = fragment(data);
         int i = 0;
         for(byte[] by : b) {
             System.out.println("\tSend packet" + i + "\t" + by.length);
