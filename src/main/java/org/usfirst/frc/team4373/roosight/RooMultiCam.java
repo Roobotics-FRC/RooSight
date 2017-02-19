@@ -20,6 +20,10 @@ public class RooMultiCam {
         return r[i].getFrame();
     }
 
+    public RooColorImage getFrame(int i, int width, int height) {
+        return r[i].getFrame(width, height);
+    }
+
     public boolean getState(int i) {
         return r[i].isCamOpen();
     }

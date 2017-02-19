@@ -44,6 +44,18 @@ public class RooCamera {
         }
     }
 
+    public RooColorImage getFrame(int width, int height) throws NullPointerException {
+        if(vc.isOpened()) {
+            Mat currFrame = new Mat();
+            vc.read(currFrame);
+            RooColorImage r = new RooColorImage(currFrame);
+            r.resize(width, height);
+            return r;
+        } else {
+            throw new NullPointerException();
+        }
+    }
+
 
     /**
      * isCamOpen()
