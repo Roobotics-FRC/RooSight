@@ -12,11 +12,14 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by tesla on 3/16/16.
  */
+
 public abstract class RooImage {
+
     protected Mat image;
 
     public RooImage(Mat image) {
@@ -30,12 +33,33 @@ public abstract class RooImage {
         return buffer;
     }
 
+    public Mat toMat(byte[] bytesImage) {
+        Mat mat = new Mat();
+        mat.put(0, 0, bytesImage);
+        return mat;
+    }
+
+    public Mat resizeMat(int width, int height, Mat src) {
+        Mat dst = new Mat();
+        Imgproc.resize(src, dst, new Size(width, height));
+        return dst;
+    }
+
+    public RooImage resize(int width, int height) {
+        this.image = resizeMat(width, height, this.image);
+        return this;
+    }
+
     public Image toFXImage() {
         return new Image(new ByteArrayInputStream(this.getBytes()));
     }
 
     public BufferedImage toBufferedImage() throws IOException {
         return ImageIO.read(new ByteArrayInputStream(this.getBytes()));
+    }
+
+    public RooSerializableImage toSerializableImage() {
+        return new RooSerializableImage(this.getBytes());
     }
 
     public RooImage(byte[] bytes) throws IOException {
