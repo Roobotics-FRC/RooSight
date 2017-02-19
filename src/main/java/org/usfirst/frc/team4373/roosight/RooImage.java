@@ -39,6 +39,12 @@ public abstract class RooImage {
         return mat;
     }
 
+    public Mat resizeMat(int width, int height, Mat src) {
+        Mat dst = new Mat();
+        Imgproc.resize(src, dst, new Size(width, height));
+        return dst;
+    }
+
     public Image toFXImage() {
         return new Image(new ByteArrayInputStream(this.getBytes()));
     }

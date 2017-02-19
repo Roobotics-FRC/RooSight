@@ -31,6 +31,15 @@ public class RooColorImage extends RooImage {
         this(image.getImageData());
     }
 
+    public byte[] resizeByteArray(int width, int height, byte[] src) throws IOException {
+        RooColorImage image = new RooColorImage(src);
+        Mat srcMat = image.getImage();
+        Mat dstMat = new Mat();
+        Imgproc.resize(srcMat, dstMat, new Size(width, height));
+        RooColorImage newImage = new RooColorImage(dstMat);
+        return newImage.getBytes();
+    }
+
     public RooBinaryImage hslThreshold(int hMin, int hMax, int lMin, int lMax, int sMin, int sMax) {
         Mat hls = new Mat(this.getImage().rows(), this.getImage().cols(), CvType.CV_8UC3);
         Imgproc.cvtColor(this.getImage(), hls, Imgproc.COLOR_BGR2HLS);
