@@ -50,6 +50,7 @@ public class RooProcessor {
         );
         RooBinaryImage hslHsv = hsl.bitwiseAnd(hsv);
         RooBinaryImage hslHsvRgb = hslHsv.bitwiseAnd(rgb);
+        hslHsvRgb.blur(config.getBlur());
         return hslHsvRgb;
     }
 

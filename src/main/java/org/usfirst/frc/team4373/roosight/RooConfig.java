@@ -43,6 +43,7 @@ public class RooConfig implements Serializable {
     private int minWidth, minHeight, minPerimeter, minArea;
     private int maxWidth, maxHeight, maxPerimeter, maxArea;
     private int minX, maxX, minY, maxY;
+    private int blur;
 
     public RooConfig() {
         this.hsvHMin = 0;
@@ -75,6 +76,7 @@ public class RooConfig implements Serializable {
         this.maxX = Integer.MAX_VALUE;
         this.minY = Integer.MIN_VALUE;
         this.maxY = Integer.MAX_VALUE;
+        this.blur = 0;
     }
 
     public void setHSV(int hMin, int hMax, int sMin, int sMax, int vMin, int vMax) {
@@ -342,6 +344,14 @@ public class RooConfig implements Serializable {
 
     public void setMinX(int minX) {
         this.minX = minX;
+    }
+
+    public int getBlur() {
+        return blur;
+    }
+
+    public void setBlur(int blur) {
+        this.blur = blur;
     }
 
     public void save(OutputStream outputStream) throws IOException {
