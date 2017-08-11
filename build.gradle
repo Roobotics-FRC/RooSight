@@ -8,7 +8,7 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 
 mainClassName = 'org.usfirst.frc.team4373.roosight.Test'
-applicationDefaultJvmArgs = ["-Djava.library.path=/usr/local/Cellar/opencv3/3.2.0/share/OpenCV/java"]
+applicationDefaultJvmArgs = ["-Djava.library.path=/usr/local/Cellar/opencv3/3.3.0_1/share/OpenCV/java"]
 
 repositories {
     mavenCentral()
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.opencv', name: 'opencv-java', version: '3.2.0'
+    compile group: 'org.opencv', name: 'opencv-java', version: '3.3.0'
 }
 
 jar {
