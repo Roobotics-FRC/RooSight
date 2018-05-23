@@ -13,10 +13,12 @@ applicationDefaultJvmArgs = ["-Djava.library.path=/usr/local/Cellar/opencv3/3.2.
 repositories {
     mavenCentral()
     maven { url 'https://raw.githubusercontent.com/Roobotics-FRC/RooMaven/master' }
+    maven { url 'http://clojars.org/repo/' }
 }
 
 dependencies {
     compile group: 'org.opencv', name: 'opencv-java', version: '3.2.0'
+    compile group: 'kryonet', name: 'kryonet', version: '2.21'
 }
 
 jar {
