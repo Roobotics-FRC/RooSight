@@ -55,7 +55,7 @@ public class SampleKryoServer {
         this.kryoServer.addListener(listener);
     }
 
-    public void setCallback(Callback<?> callback) {
+    public void setCallback(Callback callback) {
         this.callback = callback;
     }
 
