@@ -17,7 +17,7 @@ public class SampleKryoServer {
     private int tcpPort;
     private int udpPort;
     private Listener callbackInvoker;
-    private Callback<?> callback;
+    private Callback callback;
 
     /**
      * SampleKryoServer constructor accepts a Kryo server socket object (dependency injection),
